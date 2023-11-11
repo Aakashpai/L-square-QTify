@@ -21,6 +21,7 @@ const NavWrapper = styled.div`
     background-color: var(--color-black);
     color: var(--color-primary);
     border: 1px solid var(--color-primary);
+    font-family: 'Poppins', sans-serif;
     padding: 0.625rem 1rem;
     border-radius: 0.75rem;
     font-size: 1.125rem;

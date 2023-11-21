@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import SongCards from './SongCards'
+import SongCards from './SongCards';
+import axios from 'axios'
 
 const Wrapper = styled.section`
   .songs-grid {
@@ -39,14 +40,19 @@ const SongsSection = () => {
     const [isTopCollapsed, setIsTopCollapsed] = useState(false);
     const [isNewCollapsed, setIsNewCollapsed] = useState(false);
     useEffect(() => {
-      fetch('https://qtify-backend-labs.crio.do/albums/top')
-        .then(response => response.json())
-        .then(data => setTopAlbumsList(data))
-        .catch(error => console.log(error));
-      fetch('https://qtify-backend-labs.crio.do/albums/new')
-        .then(response => response.json())
-        .then(data => setNewAlbumsList(data))
-        .catch(error => console.log(error));
+      axios({
+        method: "get",
+        url: "https://qtify-backend-labs.crio.do/albums/top",
+      })
+        .then((data) => setTopAlbumsList(data.data))
+        .catch((error) => console.log(error));
+
+      axios({
+        method: "get",
+        url: "https://qtify-backend-labs.crio.do/albums/new",
+      })
+        .then((data) => setNewAlbumsList(data.data))
+        .catch((error) => console.log(error));
     }, [])
   return (
       <Wrapper>

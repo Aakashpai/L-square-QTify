@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import styled from 'styled-components';
+import Chip from '@mui/material/Chip';
 
 const CardWrapper = styled.div`
     cursor: pointer;
@@ -17,15 +18,16 @@ const CardWrapper = styled.div`
         padding: 5px 10px;
         display: flex;
     }
-    button{
+    .MuiChip-filled{
         background-color: var(--color-black);
         color: var(--color-white);
-        border: none;
-        border-radius: 0.625rem;
-        padding: 0.25rem 0.5rem;
+        height: 1.45rem;
+    }
+    .MuiChip-label{
         font-size: 0.75rem;
         font-style: normal;
         font-weight: 400;
+        padding: 0.25rem 0.5rem;
         line-height: normal;
     }
     img{
@@ -48,7 +50,7 @@ const SongCards = ({data}) => {
         <Card>
         <Card.Img src={data?.image} alt='album-img'/>
         <Card.Body style={{padding: '5px 10px'}}>
-        <button>{`${data?.follows} Follows`}</button>
+        <Chip label={`${data?.follows} Follows`} />
         </Card.Body>
         </Card>
         <p className='title'>{data.title}</p>

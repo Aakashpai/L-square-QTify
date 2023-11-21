@@ -1,61 +1,98 @@
-import React from 'react'
-import { Card } from 'react-bootstrap'
-import styled from 'styled-components';
-import Chip from '@mui/material/Chip';
+import React from "react";
+import { Chip, Tooltip } from "@mui/material";
+import styled from "styled-components";
 
-const CardWrapper = styled.div`
-    cursor: pointer;
-    .card{
-        width: 9rem;
-        height: 3.5rem; 
-        border-radius: 0.625rem;
-        border: none;
-        display: inline-table;
-    }
-    .card-body{
-        background-color: var(--color-white);
-        border-radius: 0.625rem;
-        padding: 5px 10px;
-        display: flex;
-    }
-    .MuiChip-filled{
-        background-color: var(--color-black);
-        color: var(--color-white);
-        height: 1.45rem;
-    }
-    .MuiChip-label{
-        font-size: 0.75rem;
-        font-style: normal;
-        font-weight: 400;
-        padding: 0.25rem 0.5rem;
-        line-height: normal;
-    }
-    img{
-        height: 10.625rem; 
-        border-radius: 0.625rem 0.625rem 0rem 0rem;
-    }
-    .title{
-        color: #fff;
-        font-size: 0.875rem;
-        font-style: normal;
-        font-weight: 400;
-        padding-top: 0.38rem;
-        margin: 0;
-    }
-`
+const Wrapper = styled.div`
+    width: 160px;
+    height: 232px;
+  .card {
+    position: relative;
+    width: 160px;
+    height: 205px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+  }
+  img {
+    height: 170px;
+    width: 160px;
+  }
+  .banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 42px;
+    background-color: var(--color-white);
+    display: flex;
+    align-items: center;
+    padding: 6px;
+  }
 
-const SongCards = ({data}) => {
-  return (
-    <CardWrapper>
-        <Card>
-        <Card.Img src={data?.image} alt='album-img'/>
-        <Card.Body style={{padding: '5px 10px'}}>
-        <Chip label={`${data?.follows} Follows`} />
-        </Card.Body>
-        </Card>
-        <p className='title'>{data.title}</p>
-    </CardWrapper>
-  )
-}
+  .chip {
+    color: var(--color-white) !important;
+    background-color: var(--color-black) !important;
+  }
 
-export default SongCards
+  .toptitle {
+    margin-top: 3px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+`;
+
+const SongsCards = ({ data, type }) => {
+    const getCard = (type) => {
+      switch (type) {
+        case "album": {
+          const { image, title, follows, songs } = data;
+          return (
+            <Tooltip title={`${songs.length} songs`} placement="top" arrow>
+              <Wrapper>
+                <div className="card">
+                  <img src={image} alt="album" />
+                  <div className="banner">
+                    <Chip
+                      label={`${follows} Follows`}
+                      size="small"
+                      className="chip"
+                    />
+                  </div>
+                </div>
+                <div className="toptitle">
+                  <p>{title}</p>
+                </div>
+              </Wrapper>
+            </Tooltip>
+          );
+        }
+        case "songs": {
+          const { image, likes, title } = data;
+          return (
+            <Wrapper>
+              <div className="card">
+                <img src={image} alt="song" loading="lazy" />
+                <div className="banner">
+                  <Chip
+                    label={`${likes} Likes`}
+                    size="small"
+                    className="chip"
+                  />
+                </div>
+              </div>
+              <div className="toptitle">
+                <p>{title}</p>
+              </div>
+            </Wrapper>
+          );
+        }
+        default:
+          return null;
+      }
+    };
+    return getCard(type);
+  };
+  
+  export default SongsCards;

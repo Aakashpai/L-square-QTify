@@ -2,7 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import HeroSection from './components/HeroSection';
 import Navbar from './components/Navbar';
-import SongsSection from './components/SongsSection';
+import AlbumsSection from './components/AlbumsSection';
+// import SongsSection from './components/SongsSection';
 
 function App() {
  
@@ -11,7 +12,8 @@ function App() {
     <>
     <Navbar />
     <HeroSection />
-    <SongsSection />
+    <AlbumsSection />
+    {/* <SongsSection /> */}
     </>
   );
 }

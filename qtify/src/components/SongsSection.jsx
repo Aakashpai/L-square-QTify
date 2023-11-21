@@ -1,81 +1,50 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import SongCards from './SongCards';
-import axios from 'axios'
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import React, { useState } from 'react'
+import styled from 'styled-components';
 
-const Wrapper = styled.section`
-  .songs-grid {
-    background-color: var(--color-black);
-    width: 100%;
-    /* padding: 2rem; */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    padding: 2rem 1rem 2rem 2rem;
-    overflow: hidden;
-    border-bottom: 1px solid #34C94B;
-}
-.songs-grid.collapsed {
-    max-height: 280px;
-  }
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--color-black);
-    color: var(--color-white);
-    padding: 0 2rem;
-    margin-top: 2rem;
-  }
-  .collasable {
-    color: var(--color-primary);
-    font-size: 1.25rem;
-    font-weight: 600;
-    cursor: pointer;
-  }
-`;
+const Wrapper = styled.div`
+    .Mui-selected{
+        color: var(--color-white) !important;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    .MuiTab-root{
+        color: var(--color-white) !important;
+    }
+    .MuiTabs-indicator{
+        background-color: var(--color-primary)
+    }
+`
 
 const SongsSection = () => {
-    const [topAlbumsList, setTopAlbumsList] = useState([]);
-    const [newAlbumsList, setNewAlbumsList] = useState([]);
-    const [isTopCollapsed, setIsTopCollapsed] = useState(false);
-    const [isNewCollapsed, setIsNewCollapsed] = useState(false);
-    useEffect(() => {
-      axios({
-        method: "get",
-        url: "https://qtify-backend-labs.crio.do/albums/top",
-      })
-        .then((data) => setTopAlbumsList(data.data))
-        .catch((error) => console.log(error));
+    const [value, setValue] = useState('1');
 
-      axios({
-        method: "get",
-        url: "https://qtify-backend-labs.crio.do/albums/new",
-      })
-        .then((data) => setNewAlbumsList(data.data))
-        .catch((error) => console.log(error));
-    }, [])
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
+  
   return (
-      <Wrapper>
-      <div className="section-header">
-        <p style={{fontSize: '1.25rem',fontWeight: 600}}>Top Albums</p>
-        <p className='collasable' onClick={()=>setIsTopCollapsed(!isTopCollapsed)}>{isTopCollapsed ? 'Expand' : 'Collapse'}</p>
-      </div>
-      <div className={`songs-grid ${isTopCollapsed && 'collapsed'}`}>
-        {topAlbumsList?.map((item) => (
-          <SongCards data={item} key={item.id}/>
-        ))}
-      </div>
-      <div className="section-header">
-        <p style={{fontSize: '1.25rem',fontWeight: 600}}>New Albums</p>
-        <p className='collasable' onClick={()=>setIsNewCollapsed(!isNewCollapsed)}>{isNewCollapsed ? 'Expand' : 'Collapse'}</p>
-      </div>
-      <div className={`songs-grid ${isNewCollapsed && 'collapsed'}`}>
-        {newAlbumsList?.map((item) => (
-          <SongCards data={item} key={item.id}/>
-        ))}
-      </div>
-      </Wrapper>
-  );
+    <Wrapper>
+    <Box sx={{ width: '100%', typography: 'body1' }}>
+    <TabContext value={value}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <Tab label="Item One" value="1" />
+          <Tab label="Item Two" value="2" />
+          <Tab label="Item Three" value="3" />
+        </TabList>
+      </Box>
+      <TabPanel value="1">Item One</TabPanel>
+      <TabPanel value="2">Item Two</TabPanel>
+      <TabPanel value="3">Item Three</TabPanel>
+    </TabContext>
+  </Box>
+    </Wrapper>
+  )
 }
 
 export default SongsSection

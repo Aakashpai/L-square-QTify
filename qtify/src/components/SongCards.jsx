@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap'
 import styled from 'styled-components';
 
 const CardWrapper = styled.div`
+    cursor: pointer;
     .card{
         width: 9rem;
         height: 3.5rem; 
@@ -31,6 +32,14 @@ const CardWrapper = styled.div`
         height: 10.625rem; 
         border-radius: 0.625rem 0.625rem 0rem 0rem;
     }
+    .title{
+        color: #fff;
+        font-size: 0.875rem;
+        font-style: normal;
+        font-weight: 400;
+        padding-top: 0.38rem;
+        margin: 0;
+    }
 `
 
 const SongCards = ({data}) => {
@@ -42,6 +51,7 @@ const SongCards = ({data}) => {
         <button>{`${data?.follows} Follows`}</button>
         </Card.Body>
         </Card>
+        <p className='title'>{data.title}</p>
     </CardWrapper>
   )
 }

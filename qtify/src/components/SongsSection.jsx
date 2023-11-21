@@ -36,8 +36,8 @@ const Wrapper = styled.section`
 const SongsSection = () => {
     const [topAlbumsList, setTopAlbumsList] = useState([]);
     const [newAlbumsList, setNewAlbumsList] = useState([]);
-    const [isTopCollapsed, setIsTopCollapsed] = useState(true);
-    const [isNewCollapsed, setIsNewCollapsed] = useState(true);
+    const [isTopCollapsed, setIsTopCollapsed] = useState(false);
+    const [isNewCollapsed, setIsNewCollapsed] = useState(false);
     useEffect(() => {
       fetch('https://qtify-backend-labs.crio.do/albums/top')
         .then(response => response.json())

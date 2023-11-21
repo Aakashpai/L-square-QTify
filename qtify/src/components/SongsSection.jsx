@@ -15,7 +15,7 @@ const Wrapper = styled.section`
     border-bottom: 1px solid #34C94B;
 }
 .songs-grid.collapsed {
-    max-height: 260px;
+    max-height: 280px;
   }
   .section-header {
     display: flex;

@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     overflow: hidden;
     background-color: var(--color-white);
     display: flex;
+    border: none;
     flex-direction: column;
   }
   img {

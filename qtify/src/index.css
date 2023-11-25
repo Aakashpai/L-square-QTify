@@ -1,57 +1,54 @@
-:root{
-  --color-primary: #34C94B;
-  --color-black: #121212;
-  --color-white: #fff;
-}
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Poppins&display=swap");
 
+:root {
+  --color-primary: #34c94b;
+  --color-black: #121212;
+  --color-white: #ffffff;
+}
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
-*{
+* {
   margin: 0;
 }
-
-html, body{
+html,
+body {
   height: 100%;
 }
-
-body{
-  font-family: 'Poppins', sans-serif;
+body {
+  background-color: var(--color-black) !important;
+  font-family: "Poppins", sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-color: var(--color-black) !important;
   color: var(--color-white);
+  user-select: none;
 }
-
 img,
 picture,
 canvas,
-video,
-svg{
+svg,
+video {
   display: block;
   max-width: 100%;
 }
-
 input,
 button,
 textarea,
-select{
+select {
   font: inherit;
 }
-
 p,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6{
+h6 {
   overflow-wrap: break-word;
 }
 #root,
-#__next{
+#_next {
   isolation: isolate;
 }

@@ -3,7 +3,9 @@ import './App.css';
 import HeroSection from './components/HeroSection';
 import Navbar from './components/Navbar';
 import AlbumsSection from './components/AlbumsSection';
-// import SongsSection from './components/SongsSection';
+import Footer from './components/Footer';
+import FAQ from './components/Faq';
+import Songs from './components/Songs';
 
 function App() {
  
@@ -13,7 +15,9 @@ function App() {
     <Navbar />
     <HeroSection />
     <AlbumsSection />
-    {/* <SongsSection /> */}
+    <Songs/>
+    <FAQ/>
+    {/* <Footer/> */}
     </>
   );
 }

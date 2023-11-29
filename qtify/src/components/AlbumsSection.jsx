@@ -14,7 +14,6 @@ const Wrapper = styled.section`
     gap: 2.5rem;
     padding: 2rem;
     overflow: hidden;
-    border-bottom: 1px solid #34c94b;
   }
   .songs-grid.collapsed {
     max-height: 280px;
@@ -56,7 +55,7 @@ const AlbumsSection = () => {
       .catch((error) => console.log(error));
   }, []);
   return (
-    <Wrapper isTopCollapsed={isTopCollapsed} isNewCollapsed={isNewCollapsed}>
+    <Wrapper>
       <div className="section-header">
         <p style={{ fontSize: "1.25rem", fontWeight: 600 }}>Top Albums</p>
         <p
